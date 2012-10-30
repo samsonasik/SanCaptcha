@@ -52,5 +52,3 @@ class TestcaptchaController extends AbstractActionController
         return array('form' => $form);
     }
 }
-
-//http://stackoverflow.com/questions/11690320/how-do-i-pass-file-and-post-data-into-a-form
