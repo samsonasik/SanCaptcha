@@ -1,6 +1,6 @@
 Captcha sample module.
 
-1. create folder named `cache` and `captcha` in folder data first. ( writable )
+1. create folder named `captcha` in folder data first. ( writable )
 2. create folder named `fonts` in folder data. ( readable )
 3. copy `arial.ttf` to folder data/fonts.
 4. clone to folder module.
