@@ -14,11 +14,11 @@ return array(
     
         'routes' => array(
             
-            'Test' => array(
+            'SanCaptcha' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     // Change this to something specific to your module
-                    'route'    => '/test',
+                    'route'    => '/san-captcha',
                     'defaults' => array(
                         // Change this value to reflect the namespace in which
                         // the controllers for your module are found
