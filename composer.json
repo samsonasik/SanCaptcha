@@ -1,0 +1,19 @@
+{
+    "name": "SanCaptcha",
+    "type": "library",
+    "description": "ZF2 Sample For Captcha",
+    "keywords": ["captcha","zf2"],
+    "homepage": "https://github.com/samsonasik/SanCaptcha",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdul Malik Ikhsan",
+            "email": "samsonasik@gmail.com",
+            "homepage": "http://samsonasik.wordpress.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
