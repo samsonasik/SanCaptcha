@@ -1,5 +1,5 @@
 {
-    "name": "San/SanCaptcha",
+    "name": "san/san-captcha",
     "type": "library",
     "description": "ZF2 Sample For Captcha",
     "keywords": ["captcha","zf2"],
