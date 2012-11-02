@@ -38,7 +38,7 @@ class TestcaptchaController extends AbstractActionController
     
     public function formAction()
     {
-        $form = new TestCaptchaForm($this->getRequest()->getBaseUrl().'/test/testcaptcha/captcha/');
+        $form = new TestCaptchaForm($this->getRequest()->getBaseUrl().'/san-captcha/testcaptcha/captcha/');
         $request = $this->getRequest();  
         if ($request->isPost()) {
             //set data post  
