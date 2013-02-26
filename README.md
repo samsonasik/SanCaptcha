@@ -5,4 +5,4 @@ Captcha sample module.
 3. copy `arial.ttf` to folder data/fonts.
 4. clone to folder module.
 5. register at application.config.php
-6. run http://localhost/zfproject/public/test/testcaptcha/form
+6. run http://localhost/yourzfproject/public/san-captcha
