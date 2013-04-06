@@ -1,10 +1,24 @@
 <?php
 return array(
+    
+    'san_captcha' => array(
+        'class' => 'image',
+        'options' => array(
+            'imgDir' => './data/captcha',
+            'fontDir' => './data/fonts',
+            'font' => 'arial.ttf',
+            'width' => 200,
+            'height' => 50,
+            'dotNoiseLevel' => 40,
+            'lineNoiseLevel' => 3
+        ),
+    ),
       
     'controllers' => array(
         
         'invokables' => array(
-             'SanCaptcha\Controller\Testcaptcha' => 'SanCaptcha\Controller\TestcaptchaController'
+            'SanCaptcha\Controller\Captcha' => 'SanCaptcha\Controller\CaptchaController',
+            'SanCaptcha\Controller\Testcaptcha' => 'SanCaptcha\Controller\TestcaptchaController'
         ),
         
     ),
@@ -17,13 +31,9 @@ return array(
             'SanCaptcha' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    // Change this to something specific to your module
                     'route'    => '/san-captcha',
                     'defaults' => array(
-                        // Change this value to reflect the namespace in which
-                        // the controllers for your module are found
-                        '__NAMESPACE__' => 'SanCaptcha\Controller',
-                        'controller'    => 'testcaptcha',
+                        'controller'    => 'SanCaptcha\Controller\Testcaptcha',
                         'action'        => 'form',
                     ),
                 ),
@@ -33,12 +43,11 @@ return array(
                     'captcha_form' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    => '[/][:controller[/[:action[/]]]]',
+                            'route'    => '/[:action[/]]',
                              'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
-                                'controller' => 'testcaptcha',
                                 'action' => 'form',                     
                             ),
                         ),
@@ -47,12 +56,9 @@ return array(
                     'captcha_form_generate' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    =>  '[/:controller[/captcha/[:id]]]',
-                             'constraints' => array(
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
+                            'route'    =>  '/captcha/[:id]',
                             'defaults' => array(
-                                'controller' => 'testcaptcha',
+                                'controller' => 'SanCaptcha\Controller\Captcha',
                                 'action' => 'generate',                    
                             ),
                         ),
