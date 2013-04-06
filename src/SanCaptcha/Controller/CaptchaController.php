@@ -41,8 +41,10 @@ class CaptchaController extends AbstractActionController
             ));
             
             if (file_exists($image) !== false) {
-                $fp        = fopen($image,"r");
-                $imageread = fpassthru($fp);
+                //$fp        = fopen($image,"r");
+                //$imageread = fpassthru($fp);
+                              
+                $imageread = file_get_contents($image);
                 
                 $response->setStatusCode(200);
                 $response->setContent($imageread); 
