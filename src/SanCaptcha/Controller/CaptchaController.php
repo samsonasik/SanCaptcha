@@ -35,7 +35,7 @@ class CaptchaController extends AbstractActionController
             
             $spec = $config['san_captcha'];
             
-            $image = join('/', array(
+            $image = join(DIRECTORY_SEPARATOR, array(
                 $spec['options']['imgDir'],
                 $id
             ));
