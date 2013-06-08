@@ -31,7 +31,7 @@ class CaptchaFactory implements FactoryInterface
                     $rand = array_rand($font);
                     $font = $font[$rand];
                 }
-                $spec['options']['font'] = join('/', array(
+                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, array(
                     $spec['options']['fontDir'],
                     $font
                 ));
@@ -52,7 +52,7 @@ class CaptchaFactory implements FactoryInterface
                 }
                 
                 $rand = array_rand($allFonts);
-                $spec['options']['font'] = join('/', array(
+                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, array(
                     $spec['options']['fontDir'],
                     $allFonts[$rand]
                 ));
