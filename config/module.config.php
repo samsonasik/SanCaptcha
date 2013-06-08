@@ -4,9 +4,13 @@ return array(
     'san_captcha' => array(
         'class' => 'image',
         'options' => array(
-            'imgDir' => './data/captcha',
-            'fontDir' => './data/fonts',
-            'font' => 'arial.ttf',
+            // using tmp sys dir to generate Captcha images
+            'imgDir' => sys_get_temp_dir(),
+            // feel free to add fonts in Module's font directory
+            'fontDir' => __DIR__.'/../fonts',
+            // if 'font' is not defined, SanCaptcha Module, will pick one randmoly in 'fontDir'
+//          'font' => 'arial.ttf',
+//          'font' => ['arial.ttf', 'Roboto-Regular.ttf'],
             'width' => 200,
             'height' => 50,
             'dotNoiseLevel' => 40,
