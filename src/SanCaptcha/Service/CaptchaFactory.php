@@ -38,7 +38,7 @@ class CaptchaFactory implements FactoryInterface
             }
             else // or search for availalbe fonts and pick one
             {
-                exec('ls ' . $spec['options']['fontDir'], $fileList);
+                $fileList = scandir($spec['options']['fontDir']);
                 
                 // collect all fonts
                 $allFonts = array();
