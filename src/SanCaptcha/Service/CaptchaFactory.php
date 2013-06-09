@@ -20,22 +20,46 @@ class CaptchaFactory implements FactoryInterface
         
         $spec = $config['san_captcha'];
         
-        if ('image' === $spec['class']) {
-            $plugins = $sm->get('ViewHelperManager');
-            $urlHelper = $plugins->get('url');
-            
-            $font = $spec['options']['font'];
-            
-            if (is_array($font)) {
-                $rand = array_rand($font);
-                $randFont = $font[$rand];
-                $font = $randFont;
+        if ('image' === $spec['class'])
+        {
+            // use configured fonts
+            if(isset($spec['options']['font']))
+            {
+                $font = $spec['options']['font'];
+                
+                if (is_array($font)) {
+                    $rand = array_rand($font);
+                    $font = $font[$rand];
+                }
+                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, array(
+                    $spec['options']['fontDir'],
+                    $font
+                ));
+            }
+            else // or search for availalbe fonts and pick one
+            {
+                $fileList = scandir($spec['options']['fontDir']);
+                
+                // collect all fonts
+                $allFonts = array();
+                
+                foreach ($fileList as $file)
+                {
+                	if ($this->endsWith($file, ".ttf"))
+                	{
+                		array_push($allFonts, $file);
+                	}
+                }
+                
+                $rand = array_rand($allFonts);
+                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, array(
+                    $spec['options']['fontDir'],
+                    $allFonts[$rand]
+                ));
             }
             
-            $spec['options']['font'] = join('/', array(
-                $spec['options']['fontDir'],
-                $font
-            ));
+            $plugins = $sm->get('ViewHelperManager');
+            $urlHelper = $plugins->get('url');
             
             $spec['options']['imgUrl'] = $urlHelper('SanCaptcha/captcha_form_generate');
         }
@@ -44,4 +68,12 @@ class CaptchaFactory implements FactoryInterface
         
         return $captcha;
     }
+    
+    private function endsWith($string, $end)
+    {
+    	$len = strlen($end);
+    	$string_end = substr($string, strlen($string) - $len);
+    	return $string_end == $end;
+    }
+    
 }
