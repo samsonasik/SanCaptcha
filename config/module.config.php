@@ -6,6 +6,8 @@ return array(
         'options' => array(
             // using tmp sys dir to generate Captcha images
             'imgDir' => sys_get_temp_dir(),
+            // true => SanCaptcha Module delete the Captcha image, false => Zend delete the Captcha image after some minutes
+            'imgDelete' => true,
             // feel free to add fonts in Module's font directory
             'fontDir' => __DIR__.'/../fonts',
             // if 'font' is not defined, SanCaptcha Module, will pick one randmoly in 'fontDir'
