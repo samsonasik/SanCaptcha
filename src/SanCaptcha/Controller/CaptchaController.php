@@ -33,23 +33,21 @@ class CaptchaController extends AbstractActionController
                 $config = ArrayUtils::iteratorToArray($config);
             }
             
-            $spec = $config['san_captcha'];
+            $spec = $config['san_captcha']['options'];
             
             $image = join(DIRECTORY_SEPARATOR, array(
-                $spec['options']['imgDir'],
+                $spec['imgDir'],
                 $id
             ));
             
             if (file_exists($image) !== false) {
-                //$fp        = fopen($image,"r");
-                //$imageread = fpassthru($fp);
                               
                 $imageread = file_get_contents($image);
                 
                 $response->setStatusCode(200);
                 $response->setContent($imageread); 
          
-                if (file_exists($image) == true) {
+                if ($spec['imgDelete'] && file_exists($image)) {
                     unlink($image);
                 }
             }
