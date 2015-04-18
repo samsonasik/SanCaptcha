@@ -1,6 +1,6 @@
 <?php
 return array(
-    
+
     'san_captcha' => array(
         'class' => 'image',
         'options' => array(
@@ -19,21 +19,21 @@ return array(
             'lineNoiseLevel' => 3
         ),
     ),
-      
+
     'controllers' => array(
-        
+
         'invokables' => array(
             'SanCaptcha\Controller\Captcha' => 'SanCaptcha\Controller\CaptchaController',
             'SanCaptcha\Controller\Testcaptcha' => 'SanCaptcha\Controller\TestcaptchaController'
         ),
-        
+
     ),
-    
+
 
     'router' => array(
-    
+
         'routes' => array(
-            
+
             'SanCaptcha' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -45,7 +45,7 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                
+
                     'captcha_form' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -54,18 +54,18 @@ return array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
-                                'action' => 'form',                     
+                                'action' => 'form',
                             ),
                         ),
                     ),
-                    
+
                     'captcha_form_generate' => array(
                         'type'    => 'segment',
                         'options' => array(
                             'route'    =>  '/captcha/[:id]',
                             'defaults' => array(
                                 'controller' => 'SanCaptcha\Controller\Captcha',
-                                'action' => 'generate',                    
+                                'action' => 'generate',
                             ),
                         ),
                     ),
@@ -76,9 +76,9 @@ return array(
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'Test' => __DIR__ . '/../view',
+            'san-captcha' => __DIR__ . '/../view',
         ),
-         
-        
+
+
     ),
 );
