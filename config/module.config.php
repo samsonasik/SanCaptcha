@@ -16,7 +16,8 @@ return array(
             'width' => 200,
             'height' => 50,
             'dotNoiseLevel' => 40,
-            'lineNoiseLevel' => 3
+            'lineNoiseLevel' => 3,
+            "suffix" => ""
         ),
     ),
 
