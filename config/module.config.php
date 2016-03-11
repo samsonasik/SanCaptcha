@@ -21,12 +21,10 @@ return array(
     ),
 
     'controllers' => array(
-
-        'invokables' => array(
-            'SanCaptcha\Controller\Captcha' => 'SanCaptcha\Controller\CaptchaController',
-            'SanCaptcha\Controller\Testcaptcha' => 'SanCaptcha\Controller\TestcaptchaController'
+        'factories' => array(
+            'SanCaptcha\Controller\Captcha' => 'SanCaptcha\Controller\CaptchaControllerFactory',
+            'SanCaptcha\Controller\Testcaptcha' => 'SanCaptcha\Controller\TestcaptchaControllerFactory'
         ),
-
     ),
 
 
