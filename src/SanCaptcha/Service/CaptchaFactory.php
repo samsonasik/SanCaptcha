@@ -10,6 +10,10 @@ use Zend\Stdlib\ArrayUtils;
 
 class CaptchaFactory implements FactoryInterface
 {
+    /**
+     * @param ServiceLocatorInterface $sm
+     * @return \Zend\Captcha\AdapterInterface
+     */
     public function createService(ServiceLocatorInterface $sm)
     {
          $config  = $sm->get('config');
@@ -31,17 +35,17 @@ class CaptchaFactory implements FactoryInterface
                     $rand = array_rand($font);
                     $font = $font[$rand];
                 }
-                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, array(
+                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, [
                     $spec['options']['fontDir'],
                     $font
-                ));
+                ]);
             }
             else // or search for availalbe fonts and pick one
             {
                 $fileList = scandir($spec['options']['fontDir']);
                 
                 // collect all fonts
-                $allFonts = array();
+                $allFonts = [];
                 
                 foreach ($fileList as $file)
                 {
@@ -52,10 +56,10 @@ class CaptchaFactory implements FactoryInterface
                 }
                 
                 $rand = array_rand($allFonts);
-                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, array(
+                $spec['options']['font'] = join(DIRECTORY_SEPARATOR, [
                     $spec['options']['fontDir'],
                     $allFonts[$rand]
-                ));
+                ]);
             }
             
             $plugins = $sm->get('ViewHelperManager');
@@ -68,7 +72,12 @@ class CaptchaFactory implements FactoryInterface
         
         return $captcha;
     }
-    
+
+    /**
+     * @param string $string
+     * @param string $end
+     * @return bool
+     */
     private function endsWith($string, $end)
     {
     	$len = strlen($end);

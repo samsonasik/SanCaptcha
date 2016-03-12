@@ -1,7 +1,7 @@
 <?php 
 
-return array(
-    'factories' => array(
+return [
+    'factories' => [
         'SanCaptcha' => 'SanCaptcha\Service\CaptchaFactory',
-    ),
-);
+    ],
+];

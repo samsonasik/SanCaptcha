@@ -8,6 +8,10 @@ use Zend\Captcha\AdapterInterface as CaptchaAdapter;
     
 class TestCaptchaForm extends Form
 {
+    /**
+     * TestCaptchaForm constructor.
+     * @param CaptchaAdapter|null $captchaAdapter
+     */
     public function __construct(CaptchaAdapter $captchaAdapter = null)
     {
         parent::__construct('Test Form Captcha');
@@ -15,16 +19,16 @@ class TestCaptchaForm extends Form
         
         $captcha = new Captcha('captcha');
         $captcha->setCaptcha($captchaAdapter);
-        $captcha->setOptions(array('label' => 'Please verify you are human.'));
+        $captcha->setOptions(['label' => 'Please verify you are human.']);
         $this->add($captcha);
         
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'type'  => 'submit',
                 'value' => 'Test Captcha Now'
-            ),
-        )); 
+            ],
+        ]);
     }
     
 }
