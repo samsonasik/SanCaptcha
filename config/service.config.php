@@ -1,7 +1,9 @@
-<?php 
+<?php
+
+use SanCaptcha\Service;
 
 return [
     'factories' => [
-        'SanCaptcha' => 'SanCaptcha\Service\CaptchaFactory',
+        'SanCaptcha' => Service\CaptchaFactory::class,
     ],
 ];

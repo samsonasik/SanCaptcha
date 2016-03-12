@@ -1,28 +1,19 @@
 <?php
 
-namespace SanCaptcha\Middleware;
+namespace SanCaptcha\Controller;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Traversable;
-use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Http\Response;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Stdlib\ArrayUtils;
 
-/**
- * CaptchaController
- *
- * @author
- *
- * @version
- *
- */
-class CaptchaMiddleware
+class CaptchaController extends AbstractActionController
 {
     /** @var array */
     private $config;
 
     /**
-     * CaptchaMiddleware constructor.
+     * CaptchaController constructor.
      * @param array $config
      */
     public function __construct(array $config)
@@ -32,15 +23,14 @@ class CaptchaMiddleware
 
     /**
      * The default action - show the home page
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @return ResponseInterface
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
+    public function generateAction()
     {
-        $response->withAddedHeader('Content-Type', "image/png");
+        /** @var Response $response */
+        $response = $this->getResponse();
+        $response->getHeaders()->addHeaderLine('Content-Type', "image/png");
 
-        $id = $request->getAttribute('id', false);
+        $id = $this->params('id', false);
 
         if ($id) {
             if ($this->config instanceof Traversable) {
@@ -57,13 +47,13 @@ class CaptchaMiddleware
             if (file_exists($image) !== false) {
                 $imageread = file_get_contents($image);
 
-                $response = new HtmlResponse($imageread, 200, ['Content-Type' => 'image/png']);
+                $response->setStatusCode(200);
+                $response->setContent($imageread);
 
                 if ($spec['imgDelete'] && file_exists($image)) {
                     unlink($image);
                 }
             }
-
         }
 
         return $response;

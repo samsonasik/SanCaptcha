@@ -1,6 +1,6 @@
 <?php
 
-use SanCaptcha\Middleware;
+use SanCaptcha\Controller;
 
 return [
 
@@ -24,10 +24,14 @@ return [
         ],
     ],
 
-    'service_manager' => [
+    'controllers' => [
+        'aliases' => [
+            'SanCaptcha\Controller\Captcha' => Controller\CaptchaController::class,
+            'SanCaptcha\Controller\Testcaptcha' => Controller\TestcaptchaController::class,
+        ],
         'factories' => [
-            Middleware\CaptchaMiddleware::class => Middleware\CaptchaMiddlewareFactory::class,
-            Middleware\TestcaptchaMiddleware::class => Middleware\TestcaptchaMiddlewareFactory::class
+            Controller\CaptchaController::class => Controller\CaptchaControllerFactory::class,
+            Controller\TestcaptchaController::class => Controller\TestcaptchaControllerFactory::class,
         ],
     ],
 
@@ -41,7 +45,8 @@ return [
                 'options' => [
                     'route' => '/san-captcha',
                     'defaults' => [
-                        'middleware' => Middleware\TestcaptchaMiddleware::class,
+                        'controller' => 'SanCaptcha\Controller\Testcaptcha',
+                        'action' => 'form',
                     ],
                 ],
                 'may_terminate' => true,
@@ -49,19 +54,26 @@ return [
                     'captcha_form' => [
                         'type' => 'segment',
                         'options' => [
-                            'route' => '/',
+                            'route'    => '/[:action[/]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z]+',
+                            ],
                             'defaults' => [
-                                'middleware' => Middleware\TestcaptchaMiddleware::class,
+                                'controller' => 'SanCaptcha\Controller\Testcaptcha',
+                                'action' => 'form',
                             ],
                         ],
                     ],
-
                     'captcha_form_generate' => [
                         'type' => 'segment',
                         'options' => [
                             'route' => '/captcha/[:id]',
+                            'constraints' => [
+                                'id' => '[0-9a-zA-Z]+',
+                            ],
                             'defaults' => [
-                                'middleware' => Middleware\CaptchaMiddleware::class,
+                                'controller' => 'SanCaptcha\Controller\Captcha',
+                                'action' => 'generate',
                             ],
                         ],
                     ],

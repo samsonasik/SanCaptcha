@@ -1,20 +1,19 @@
 <?php
 
-namespace SanCaptcha\Middleware;
+namespace SanCaptcha\Controller;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use SanCaptcha\Form\TestCaptchaForm;
 use Zend\Captcha\AdapterInterface;
 use Zend\Http\Request;
+use Zend\Mvc\Controller\AbstractActionController;
 
-class TestcaptchaMiddleware
+class TestcaptchaController extends AbstractActionController
 {
     /** @var AdapterInterface AdapterInterface */
     protected $captchaService;
 
     /**
-     * TestcaptchaMiddleware constructor.
+     * TestcaptchaController constructor.
      * @param AdapterInterface $captchaService
      */
     public function __construct(AdapterInterface $captchaService)
@@ -23,17 +22,17 @@ class TestcaptchaMiddleware
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      * @return array
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
+    public function formAction()
     {
         $form = new TestCaptchaForm($this->captchaService);
 
-        if ($request->getMethod() == Request::METHOD_POST) {
+        /** @var Request $request */
+        $request = $this->getRequest();
+        if ($request->isPost()) {
             //set data post
-            $form->setData($request->getAttributes());
+            $form->setData($request->getPost());
 
             if ($form->isValid()) {
                 echo "captcha is valid ";
