@@ -9,13 +9,13 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class CaptchaControllerFactory implements FactoryInterface
 {
     /**
-     * @param AbstractPluginManager|ServiceLocatorInterface $abstractPluginManager
+     * @param AbstractPluginManager|ServiceLocatorInterface $serviceLocator
      *
      * @return CaptchaController
      */
-    public function createService(ServiceLocatorInterface $abstractPluginManager)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $abstractPluginManager->getServiceLocator()->get('Config');
+        $config = $serviceLocator->getServiceLocator()->get('Config');
 
         return new CaptchaController($config);
     }

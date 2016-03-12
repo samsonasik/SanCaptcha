@@ -9,14 +9,14 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class TestCaptchaControllerFactory implements FactoryInterface
 {
     /**
-     * @param AbstractPluginManager|ServiceLocatorInterface $abstractPluginManager
+     * @param AbstractPluginManager|ServiceLocatorInterface $serviceLocator
      *
      * @return TestcaptchaController
      */
-    public function createService(ServiceLocatorInterface $abstractPluginManager)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /** @var \Zend\Captcha\AdapterInterface $captchaService */
-        $captchaService = $abstractPluginManager->getServiceLocator()->get('SanCaptcha');
+        $captchaService = $serviceLocator->getServiceLocator()->get('SanCaptcha');
 
         return new TestcaptchaController($captchaService);
     }
