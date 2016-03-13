@@ -13,12 +13,21 @@
             "role": "Developer"
         }
     ],
-    "require": {
-        "php": ">=5.3.0"
-    },
     "autoload": {
-        "classmap": [
-            "./"
-        ]
+        "psr-0": {
+            "SanCaptcha\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "zendframework/zend-servicemanager": "~2.5",
+        "zendframework/zend-mvc": "~2.5",
+        "zendframework/zend-loader": "~2.5",
+        "zendframework/zend-config": "~2.5",
+        "zendframework/zend-captcha": "~2.5",
+        "zendframework/zend-form": "~2.5",
+        "zendframework/zend-stdlib": "~2.5|~3.0",
+        "zendframework/zend-router": "~2.5",
+        "zendframework/zend-http": "~2.5"
     }
 }

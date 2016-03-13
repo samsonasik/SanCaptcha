@@ -1,13 +1,24 @@
 <?php
+/** @var \Zend\Form\Form $form */
 $form = $this->form;
-$form->setAttribute('action',
-                    $this->url('SanCaptcha/captcha_form',
-                               array('controller'=>'testcaptcha', 'action' => 'form'))); 
+
+$form->setAttribute(
+    'action',
+    $this->url(
+        'SanCaptcha/captcha_form',
+        [
+            'controller' => 'testcaptcha',
+            'action' => 'form'
+        ]
+    )
+);
+
 $form->prepare();
 
 echo $this->form()->openTag($form);
 
 echo $this->formRow($form->get('captcha'));
- 
+
 echo $this->formSubmit($form->get('submit'));
+
 echo $this->form()->closeTag();

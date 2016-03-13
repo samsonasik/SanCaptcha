@@ -2,22 +2,20 @@
 
 namespace SanCaptcha\Controller;
 
+use Traversable;
+use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Stdlib\ArrayUtils;
-use Traversable;
 
-/**
- * CaptchaController
- *
- * @author
- *
- * @version
- *
- */
 class CaptchaController extends AbstractActionController
 {
+    /** @var array */
     private $config;
 
+    /**
+     * CaptchaController constructor.
+     * @param array $config
+     */
     public function __construct(array $config)
     {
         $this->config = $config;
@@ -26,8 +24,9 @@ class CaptchaController extends AbstractActionController
     /**
      * The default action - show the home page
      */
-    public function generateAction ()
+    public function generateAction()
     {
+        /** @var Response $response */
         $response = $this->getResponse();
         $response->getHeaders()->addHeaderLine('Content-Type', "image/png");
 
@@ -40,13 +39,12 @@ class CaptchaController extends AbstractActionController
 
             $spec = $this->config['san_captcha']['options'];
 
-            $image = join(DIRECTORY_SEPARATOR, array(
+            $image = join(DIRECTORY_SEPARATOR, [
                 $spec['imgDir'],
                 $id
-            ));
+            ]);
 
             if (file_exists($image) !== false) {
-
                 $imageread = file_get_contents($image);
 
                 $response->setStatusCode(200);
@@ -56,7 +54,6 @@ class CaptchaController extends AbstractActionController
                     unlink($image);
                 }
             }
-
         }
 
         return $response;

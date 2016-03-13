@@ -2,29 +2,33 @@
 
 namespace SanCaptcha\Form;
 
-use Zend\Form\Form;
-use Zend\Form\Element\Captcha;
 use Zend\Captcha\AdapterInterface as CaptchaAdapter;
-    
+use Zend\Form\Element\Captcha;
+use Zend\Form\Form;
+
 class TestCaptchaForm extends Form
 {
+    /**
+     * TestCaptchaForm constructor.
+     * @param CaptchaAdapter|null $captchaAdapter
+     */
     public function __construct(CaptchaAdapter $captchaAdapter = null)
     {
         parent::__construct('Test Form Captcha');
         $this->setAttribute('method', 'post');
-        
+
         $captcha = new Captcha('captcha');
         $captcha->setCaptcha($captchaAdapter);
-        $captcha->setOptions(array('label' => 'Please verify you are human.'));
+        $captcha->setOptions(['label' => 'Please verify you are human.']);
         $this->add($captcha);
-        
-        $this->add(array(
+
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
-                'type'  => 'submit',
+            'attributes' => [
+                'type' => 'submit',
                 'value' => 'Test Captcha Now'
-            ),
-        )); 
+            ],
+        ]);
     }
-    
+
 }
