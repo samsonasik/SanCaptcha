@@ -2,21 +2,23 @@
 
 namespace SanCaptcha\Service;
 
+use Interop\Container\ContainerInterface;
 use Traversable;
 use Zend\Captcha\Factory;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\Stdlib\ArrayUtils;
 
 class CaptchaFactory implements FactoryInterface
 {
     /**
-     * @param ServiceLocatorInterface $sm
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @param array|null $options
      * @return \Zend\Captcha\AdapterInterface
      */
-    public function createService(ServiceLocatorInterface $sm)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $sm->get('Config');
+        $config = $container->get('Config');
 
         if ($config instanceof Traversable) {
             $config = ArrayUtils::iteratorToArray($config);
@@ -58,7 +60,7 @@ class CaptchaFactory implements FactoryInterface
                 ]);
             }
 
-            $plugins = $sm->get('ViewHelperManager');
+            $plugins = $container->get('ViewHelperManager');
             $urlHelper = $plugins->get('url');
 
             $spec['options']['imgUrl'] = $urlHelper('SanCaptcha/captcha_form_generate');

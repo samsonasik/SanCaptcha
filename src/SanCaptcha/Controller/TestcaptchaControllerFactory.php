@@ -2,22 +2,19 @@
 
 namespace SanCaptcha\Controller;
 
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
-class TestCaptchaControllerFactory implements FactoryInterface
+class TestcaptchaControllerFactory implements FactoryInterface
 {
     /**
-     * @param AbstractPluginManager|ServiceLocatorInterface $serviceLocator
-     *
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @param array|null $options
      * @return TestcaptchaController
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var \Zend\Captcha\AdapterInterface $captchaService */
-        $captchaService = $serviceLocator->getServiceLocator()->get('SanCaptcha');
-
-        return new TestcaptchaController($captchaService);
+        return new TestcaptchaController($container->get('SanCaptcha'));
     }
 }
