@@ -11,7 +11,11 @@ composer require san/san-captcha:0.*
 ```
 'modules' => array(
     'Application',
-    'SanCaptcha'
+    'Zend\Form',
+    'Zend\I18n',
+    'Zend\Router',
+    'Zend\Validator',
+    'Zend\Session'
 ),
 ```
 - call in browser http://localhost/yourzfproject/public/san-captcha
