@@ -1,8 +1,6 @@
 <?php
 
 use SanCaptcha\Controller;
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
 
 return [
 
@@ -43,7 +41,7 @@ return [
         'routes' => [
 
             'SanCaptcha' => [
-                'type' => Literal::class,
+                'type' => 'Literal', // TODO change to Zend\Router\Http\Literal::class router-3 requirement is enforced
                 'options' => [
                     'route' => '/san-captcha',
                     'defaults' => [
@@ -54,7 +52,7 @@ return [
                 'may_terminate' => true,
                 'child_routes' => [
                     'captcha_form' => [
-                        'type' => Segment::class,
+                        'type' => 'Segment', // TODO change to Zend\Router\Http\Segment::class router-3 requirement is enforced
                         'options' => [
                             'route'    => '/[:action[/]]',
                             'constraints' => [
@@ -67,7 +65,7 @@ return [
                         ],
                     ],
                     'captcha_form_generate' => [
-                        'type' => Segment::class,
+                        'type' => 'Segment', // TODO change to Zend\Router\Http\Segment::class router-3 requirement is enforced
                         'options' => [
                             'route' => '/captcha/[:id]',
                             'constraints' => [

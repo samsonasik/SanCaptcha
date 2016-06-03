@@ -4,8 +4,10 @@ namespace SanCaptcha\Service;
 
 use Interop\Container\ContainerInterface;
 use Traversable;
+use Zend\Captcha\AdapterInterface;
 use Zend\Captcha\Factory;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\ArrayUtils;
 
 class CaptchaFactory implements FactoryInterface
@@ -14,11 +16,30 @@ class CaptchaFactory implements FactoryInterface
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return \Zend\Captcha\AdapterInterface
+     * @return AdapterInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $container->get('Config');
+        return $this->getService($container);
+    }
+
+    /**
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return AdapterInterface
+     * @TODO remove if mvc-3 requirement is enforced
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->getService($serviceLocator);
+    }
+
+    /**
+     * @param ContainerInterface|ServiceLocatorInterface $container
+     * @return AdapterInterface
+     */
+    protected function getService($container)
+    {
+        $config = $container->get('config');
 
         if ($config instanceof Traversable) {
             $config = ArrayUtils::iteratorToArray($config);
