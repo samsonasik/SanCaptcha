@@ -41,7 +41,7 @@ return [
         'routes' => [
 
             'SanCaptcha' => [
-                'type' => 'Literal',
+                'type' => 'Literal', // TODO change to Zend\Router\Http\Literal::class router-3 requirement is enforced
                 'options' => [
                     'route' => '/san-captcha',
                     'defaults' => [
@@ -52,7 +52,7 @@ return [
                 'may_terminate' => true,
                 'child_routes' => [
                     'captcha_form' => [
-                        'type' => 'segment',
+                        'type' => 'Segment', // TODO change to Zend\Router\Http\Segment::class router-3 requirement is enforced
                         'options' => [
                             'route'    => '/[:action[/]]',
                             'constraints' => [
@@ -65,7 +65,7 @@ return [
                         ],
                     ],
                     'captcha_form_generate' => [
-                        'type' => 'segment',
+                        'type' => 'Segment', // TODO change to Zend\Router\Http\Segment::class router-3 requirement is enforced
                         'options' => [
                             'route' => '/captcha/[:id]',
                             'constraints' => [

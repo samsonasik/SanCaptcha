@@ -19,15 +19,15 @@
         }
     },
     "require": {
-        "php": ">=5.5",
-        "zendframework/zend-servicemanager": "~2.5",
-        "zendframework/zend-mvc": "~2.5",
-        "zendframework/zend-loader": "~2.5",
-        "zendframework/zend-config": "~2.5",
-        "zendframework/zend-captcha": "~2.5",
-        "zendframework/zend-form": "~2.5",
-        "zendframework/zend-stdlib": "~2.5|~3.0",
-        "zendframework/zend-router": "~2.5",
-        "zendframework/zend-http": "~2.5"
+        "php": "^5.5 | ^7",
+        "zendframework/zend-servicemanager": "^2.5 | ^3.0",
+        "zendframework/zend-mvc": "^2.5 | ^3.0",
+        "zendframework/zend-captcha": "^2.5",
+        "zendframework/zend-form": "^2.5",
+        "zendframework/zend-stdlib": "^2.5 | ^3.0",
+        "zendframework/zend-router": "^2.5 | ^3.0",
+        "zendframework/zend-i18n": "^2.5",
+        "zendframework/zend-http": "^2.5",
+        "zendframework/zend-session": "^2.5"
     }
 }
