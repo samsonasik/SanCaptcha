@@ -12,10 +12,6 @@ class CaptchaController extends AbstractActionController
     /** @var array */
     private $config;
 
-    /**
-     * CaptchaController constructor.
-     * @param array $config
-     */
     public function __construct(array $config)
     {
         $this->config = $config;
@@ -33,10 +29,6 @@ class CaptchaController extends AbstractActionController
         $id = $this->params('id', false);
 
         if ($id) {
-            if ($this->config instanceof Traversable) {
-                $this->config = ArrayUtils::iteratorToArray($this->config);
-            }
-
             $spec = $this->config['san_captcha']['options'];
 
             $image = join(DIRECTORY_SEPARATOR, [

@@ -1,6 +1,6 @@
 <?php
 
-use SanCaptcha\Controller;
+namespace SanCaptcha;
 
 return [
 

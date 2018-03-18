@@ -1,8 +1,8 @@
 {
     "name": "san/san-captcha",
     "type": "library",
-    "description": "ZF2 Sample For Captcha",
-    "keywords": ["captcha","zf2"],
+    "description": "ZF3 Sample For Captcha",
+    "keywords": ["captcha","zf2", "zf3"],
     "homepage": "https://github.com/samsonasik/SanCaptcha",
     "license": "MIT",
     "authors": [
@@ -19,13 +19,13 @@
         }
     },
     "require": {
-        "php": "^5.5 | ^7",
-        "zendframework/zend-servicemanager": "^2.5 | ^3.0",
-        "zendframework/zend-mvc": "^2.5 | ^3.0",
+        "php": "^7.1",
+        "zendframework/zend-servicemanager": "^3.3.0",
+        "zendframework/zend-mvc": "^3.0",
         "zendframework/zend-captcha": "^2.5",
         "zendframework/zend-form": "^2.5",
-        "zendframework/zend-stdlib": "^2.5 | ^3.0",
-        "zendframework/zend-router": "^2.5 | ^3.0",
+        "zendframework/zend-stdlib": "^3.0",
+        "zendframework/zend-router": "^3.0",
         "zendframework/zend-i18n": "^2.5",
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-session": "^2.5"
