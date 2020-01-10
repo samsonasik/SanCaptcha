@@ -2,9 +2,9 @@
 
 namespace SanCaptcha\Form;
 
-use Zend\Captcha\AdapterInterface as CaptchaAdapter;
-use Zend\Form\Element\Captcha;
-use Zend\Form\Form;
+use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
+use Laminas\Form\Element\Captcha;
+use Laminas\Form\Form;
 
 class TestCaptchaForm extends Form
 {

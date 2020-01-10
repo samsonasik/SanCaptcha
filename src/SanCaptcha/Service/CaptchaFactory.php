@@ -4,11 +4,11 @@ namespace SanCaptcha\Service;
 
 use Psr\Container\ContainerInterface;
 use Traversable;
-use Zend\Captcha\AdapterInterface;
-use Zend\Captcha\Factory;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Captcha\AdapterInterface;
+use Laminas\Captcha\Factory;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Stdlib\ArrayUtils;
 
 class CaptchaFactory
 {
