@@ -1,8 +1,8 @@
 {
     "name": "san/san-captcha",
     "type": "library",
-    "description": "ZF3 Sample For Captcha",
-    "keywords": ["captcha","zf2", "zf3"],
+    "description": "Laminas Sample For Captcha",
+    "keywords": ["captcha", "laminas", "zf2", "zf3"],
     "homepage": "https://github.com/samsonasik/SanCaptcha",
     "license": "MIT",
     "authors": [

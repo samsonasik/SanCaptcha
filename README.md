@@ -4,18 +4,18 @@ Captcha sample module.
 - Install:
 
 ```
-composer require san/san-captcha:1.*
+composer require san/san-captcha
 ```
 
 - register at application.config.php
 ```
 'modules' => array(
     'Application', // your app
-    'Zend\Form',
-    'Zend\I18n',
-    'Zend\Router',
-    'Zend\Validator',
-    'Zend\Session',
+    'Laminas\Form',
+    'Laminas\I18n',
+    'Laminas\Router',
+    'Laminas\Validator',
+    'Laminas\Session',
     'SanCaptcha'
 ),
 ```
