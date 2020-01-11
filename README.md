@@ -1,6 +1,10 @@
 Captcha sample module.
 ======================
 
+> This is README for version ^2.0 which uses Laminas components
+
+> For version ^1.0 that support zf, you can browse [v1 readme](https://github.com/samsonasik/SanCaptcha/blob/1.x.x/README.md)
+
 - Install:
 
 ```
