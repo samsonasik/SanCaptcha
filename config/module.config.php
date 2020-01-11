@@ -2,6 +2,8 @@
 
 namespace SanCaptcha;
 
+use Laminas\Router\Http;
+
 return [
 
     'san_captcha' => [
@@ -41,7 +43,7 @@ return [
         'routes' => [
 
             'SanCaptcha' => [
-                'type' => 'Literal', // TODO change to Zend\Router\Http\Literal::class router-3 requirement is enforced
+                'type' => Http\Literal::class,
                 'options' => [
                     'route' => '/san-captcha',
                     'defaults' => [
@@ -52,7 +54,7 @@ return [
                 'may_terminate' => true,
                 'child_routes' => [
                     'captcha_form' => [
-                        'type' => 'Segment', // TODO change to Zend\Router\Http\Segment::class router-3 requirement is enforced
+                        'type' => Http\Segment::class,
                         'options' => [
                             'route'    => '/[:action[/]]',
                             'constraints' => [
@@ -65,7 +67,7 @@ return [
                         ],
                     ],
                     'captcha_form_generate' => [
-                        'type' => 'Segment', // TODO change to Zend\Router\Http\Segment::class router-3 requirement is enforced
+                        'type' => Http\Segment::class,
                         'options' => [
                             'route' => '/captcha/[:id]',
                             'constraints' => [

@@ -3,9 +3,9 @@
 namespace SanCaptcha\Controller;
 
 use Traversable;
-use Zend\Http\Response;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Http\Response;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Stdlib\ArrayUtils;
 
 class CaptchaController extends AbstractActionController
 {

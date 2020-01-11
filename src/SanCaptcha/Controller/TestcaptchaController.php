@@ -3,9 +3,9 @@
 namespace SanCaptcha\Controller;
 
 use SanCaptcha\Form\TestCaptchaForm;
-use Zend\Captcha\AdapterInterface;
-use Zend\Http\Request;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Captcha\AdapterInterface;
+use Laminas\Http\Request;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class TestcaptchaController extends AbstractActionController
 {
